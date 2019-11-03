@@ -67,7 +67,7 @@ $ P\left(X_{i}=x_{i} | p a_{i}, I_{i}\right)=\left\{\begin{array}{ll}{P\left(X_{
 
 Note that in contrast to Fisher’s randomisations [11] that determine a distribution over the intervened variable, Pearl’s atomic intervention sets the intervened variable to one particular value. Let's quickly take a look at a simple toy example. In the causal bayes net shown below (Figure 1. left), we intervene  the random variable $Y$ and one can see how the causal structure has changes. The causal influence of $X$ on $Y$ — marked by the arrow in the graph— doesn’t have any impact any more and the arrow has been severed post intervention (Figure 1. right).
 
-![image-20190903020522681](Interventions for Causal Understanding.assets/image-20190903020522681.png)
+![image-20190903020522681](images/image-20190903020522681.png)
 
 ​		       **Figure 1:** Toy example demonstrating the effect of intervention on a random variable in a causal graph.
 
@@ -128,7 +128,7 @@ where the parents of $X_i$ are the immediate causes of $X_i$ , and if there are 
 
  P($X_i$) is used.  An example DAG with its factored joint distribution is shown below. 
 
-![image-20190903023617927](Interventions for Causal Understanding.assets/image-20190903023617927.png)
+![image-20190903023617927](images/image-20190903023617927.png)
 
 ​			                       **Figure 2:** Example Graphical Model to show Factored Joint Distribution
 
@@ -136,7 +136,7 @@ where the parents of $X_i$ are the immediate causes of $X_i$ , and if there are 
 
 Lets define *structural* intervention on variable $T$ in the DAG shown below defined over set of vertices $V$. As per our definition of intervention, we introduce an instrumental variable $I$, which has two states (*on*/*off*). When $I$ is *off*, the passive observational distribution over $V$ is obtained.  Note that $I$ is a direct cause of $T$ and only $T$ and is exogenous, i.e. uncaused.  When $I$ is *on*, it makes $T$ independent of its causes in $V$ (breaks the edges that are incident on $T$) and *determines* the distribution of $T$; that is, in the factored joint distribution $P(V)$, the term $P(T | parents(T))$ is replaced with the term $P(T |I=on)$, all other terms in the factorized joint distribution are unchanged. 
 
-![image-20190905060132608](Interventions for Causal Understanding.assets/image-20190905060132608.png)
+![image-20190905060132608](images/image-20190905060132608.png)
 
 ​		                                     **Figure 3:** Example Graphical Model for Structural Intervention 
 
@@ -144,7 +144,7 @@ Lets define *structural* intervention on variable $T$ in the DAG shown below def
 
 In cases we considered until now, we mostly did atomic intervention i.e. Pearl’s type of intervention scheme but there is another type of intervention, developed by Fisher [11], based on randomisation. It basically involves randomising the random variable of interest such that it becomes independent of its cause. Thus, allowing us to estimate the true causal effect of that variable on the others. Let's consider a simple example where we want to estimate the causal effect of treatment on the recovery of the patient. As the first step in the estimation, one randomly assigns the treatment $T$ according to a noise distribution, $N_T$,  to a patient and, then, observes the (binary) recovery variable $R$. Assume that $T$ takes three possible values ($T$= 0: no medication, $T$ = 1: placebo, and $T$ = 2: drug of interest) and that $N_T$ randomly chooses one of these three possibilities: *P*($N_T$ = 0) = *P*($N_T$  = 1) = *P*($N_T$  = 2) = 1/3. If we use do-calculus notation to mathematically summarise the steps, such a randomisation is modelled with observing data from the distribution $P_{\mathbf{X}}^{\mathbf{C} ; d o\left(T :=\widehat{N}_{T}\right)}$ where $C$ denotes the original structural causal model without randomisation. This process can be graphically visualised as below: 
 
-![image-20190905062843931](Interventions for Causal Understanding.assets/image-20190905062843931.png)
+![image-20190905062843931](images/image-20190905062843931.png)
 
 **Figure 4:** Simplified description of randomized studies. *T* denotes the treatment, *P* and *B* the patient’s psychology and some biochemical state, and *R* indicates whether the patient recovers. The randomization over *T* removes the influence of any other variable on *T*, and thus there cannot be any hidden common cause between *T* and *R*. We distinguish between two different effects: the placebo effect via *P* and the biochemical effect via *B*.
 
@@ -165,7 +165,7 @@ Although randomized trials have become de facto the gold standard for causal dis
 
 Lets now go on and define *parametric* intervention on variable $T$ in the DAG shown below defined over set of vertices $V$.  $I$ Is a variable which has two states (*on*/*off*). When $I$ is *off*, the passive observational distribution over $V$ is obtained.  As before $I$ is a direct cause of $X$ and only $X$ and is exogenous, i.e. uncaused.  When $I$ is *on*, it doesn’t make $IC$ independent of its causes in $V$ (does not break the edges that are incident on $IC$). In the factored joint distribution $P(V)$, the term $P(IC | parents(IC))$ is replaced with the term $P(IC |I=on)$ and otherwise, all other terms are unchanged. But how do you instantiate such a parametric intervention in practise, you may ask? If the intervened variable is a linear (or additive) function of its parents, then the intervention could be an additional linear factor. For example, if the target is *income*, the intervention could be to boost the subject’s existing income by $10,000/year.
 
-1. ![image-20190905070827584](Interventions for Causal Understanding.assets/image-20190905070827584.png)
+1. ![image-20190905070827584](images/image-20190905070827584.png)
 
 ​												**Figure 5:**  Example Graphical Model for Parametric Intervention 
 
@@ -181,14 +181,14 @@ In practice parametric interventions can arise for at least two reasons.
 - Structural intervention of the wrong variable might then not be informative about the true causal structure, since even the manipulated distribution could have been generated by several different causal structures.
   - For example, consider the below Figure 6. If you intervene on $C$ as seen in (2), it would make the pairs A-C and B-C independent, since the incoming arrows on $C$ are broken in the post-manipulation graph. Now, the only link remaining would be between $A$ and $B$ but their direction can only be determined with another intervention on either $A$ or $B$. Interestingly, the manipulated distribution we have now could as well have been generated by (3), here the true causal graph has no causal links between A and C or B and C. Hence, we can say that structural intervention also lead to Markov equivalence classes of graphs. Note that a further structural intervention on $A$ in a second experiment would distinguish (1) from (3), since $A$ and $C$ would be correlated in (1) while they would be independent in (3).
 
-![image-20190903034453679](Interventions for Causal Understanding.assets/image-20190903034453679.png)
+![image-20190903034453679](images/image-20190903034453679.png)
 
 ​											**Figure 6:** Example of failure case of Structural Intervention
 
 - Learning the underlying causal structure using parametric intervention.
   - The following example, illustrated in the below figure, explains the result: The true unknown complete graph among the variables $A$, $B$ and $C$ is shown on the left. If we In an experiment  perform simultaneously and independently a parametric intervention on $A$ and $B$ ($I_A$ and $I_B$, respectively, shown on the right). Since the interventions do not break any edges, the graph on the right represents the post-manipulation graph. Note that $A$, $B$ and $I_{B}$ form an unshielded collider, so do $C$, $B$ and $I_{B}$ and thus can can be identified. The edge $A$ to $C$ can be determined since (i) $A$ and $C$ are dependent for all possible conditioning sets, but (ii) $I_{A}$, $A$ and $C$ do *not* form an unshielded collider. We have thereby managed to discover the true causal graph in one experiment. 
 
-![image-20190903034812744](Interventions for Causal Understanding.assets/image-20190903034812744.png). 
+![image-20190903034812744](images/image-20190903034812744.png). 
 
 ​	 		**Figure 7:** Demonstrating the use of Parametric Intervention to discover underlying causal structure
 
@@ -203,18 +203,18 @@ In practice parametric interventions can arise for at least two reasons.
     - First, determining the causal structure from parametric interventions requires more conditional independence tests with larger conditioning sets. This implies  that more samples are needed to obtain a similar statistical power on the independence tests as in the structural intervention case. 
     - Second, the theorems [13, 14] only hold in  general for causally sufficient sets of variables
 
-    ![image-20190903034910618](Interventions for Causal Understanding.assets/image-20190903034910618.png)
+    ![image-20190903034910618](images/image-20190903034910618.png)
 
     ​               															  **Table 1**  
 
 - Unlike randomised trials, parametric interventions are not robust against latent confounders, since they do not make the intervened variable independent of its other causes. This implies that there are cases for which the causal structure cannot be uniquely identified by parametric interventions and cases for which it can identified - all depends on the complexity of the model. For example, consider the two graphs below. The observed variables $A$, $B$ and $C$ with latent common causes $L_1$, $L_2$ and $L_3$ are indistinguishable given parametric interventions on $A$, $B$ and $C$. There is no conditional independence relation between the variables (including the intervention nodes omitted for clarity in the figure) that distinguishes the two graphs.
-  ![image-20190905093120350](Interventions for Causal Understanding.assets/image-20190905093120350.png)
+  ![image-20190905093120350](images/image-20190905093120350.png)
 
   ​						**Figure 8:** Example of failure case of Parametric Intervention due to causal insufficiency 
 
   - The parametric intervention $I_X$  on $X$ will not break the association between $X$ and $Y$ that is due to the unmeasured common cause $L$. This does not mean that the edge $X$ to $Y$ cannot be identified, since (a) if there were no edge between $X$ and $Y$, then $I_X$ and $Y$ *would not* be associated, and (b) if the edge were from $Y$ to $X$, then $I_Y$ and $X$ *would* be associated. A
 
-  ![image-20190905093141777](Interventions for Causal Understanding.assets/image-20190905093141777.png)
+  ![image-20190905093141777](images/image-20190905093141777.png)
 
   ​					**Figure 9:** Example of successful case of Parametric Intervention despite causal insufficiency 
 
@@ -228,7 +228,7 @@ In practice parametric interventions can arise for at least two reasons.
 
 Francis crick - in his Scientific American article (1979) on Thinking about the brain - recognised limitation of purely observational techniques suggested that methods that allow not only observe but also perturb the neuronal responses is strongly desired to understand the working of the brain. However, it took several decades before a method that could control the activity of the neuronal population in a temporally precise, noninvasive way, called Optogenetics, was developed.  Boyden et al [16] approach could not only reliably control neuronal spiking and synaptic events at millisecond-timescale but also do this in a non-invasive way. Thus, serving as a perfect perturbation tool for us to drive circuit dynamics, plasticity and behaviour.  There are several works that have used this to performing interventions and discovering the causal role of a mechanism [17, 18, 19].  Here, we look at work done  by Steinburg et al [17] (fun fact the senior author is one of the inventors of the Optogenetics, Karl Deisseroth) where they studied the causal link between dopamine neurons, prediction errors and (associative) learning through optogenetic manipulation.
 
-![IMG_8636](Interventions for Causal Understanding.assets/IMG_8636.JPG)
+![IMG_8636](images/IMG_8636.JPG)
 
 They considered two conditioning paradigm to infer causal structure:
 
@@ -263,7 +263,7 @@ They considered two conditioning paradigm to infer causal structure:
 
 - tDCS or TMS
 
-![image-20191103235353709](Interventions for Causal Understanding.assets/image-20191103235353709.png)
+![image-20191103235353709](images/image-20191103235353709.png)
 
 Figure 10: Comparison between two proposed levels of investigation in science one by George Ellis (Ellis, 2008) and the other by Oppenheim and Putnam (Oppenheimer & Putnam, 1958). In this figure, I also integrated “Levels of structure within nervous system” proposed by Churchland and Sejnowski (P. Churchland & Sejnowski, 1994; Sejnowski, Churchland, & Movshon, 2014). On the right side, there is the scope of causal investigation in neuroscience. It is important to note that, all of these techniques are capable of either activating, which can leads to satisfying sufficiency, or deactivating for searching in domain of necessity. However, brain lesion is the exception that is unable to be used to search for sufficient neuronal substrate to produce the behaviour. In addition, CRISPR cannot be added in this scope since it has both different temporal and spatial resolution (described later). Abbreviations: tDCS: Transcranial Direct Current Stimulation ,TMS: Transcranial Magnetic Stimulation ,EBS: Electrical Brain Stimulation ,DBS: Deep Brain Stimulation ,DREADDs: Designer Receptors Exclusively Activated by Designer Drugs. Image on the right has modified from (Sejnowski et al., 2014) 
 
