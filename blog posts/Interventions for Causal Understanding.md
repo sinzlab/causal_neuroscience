@@ -267,12 +267,16 @@ They considered two conditioning paradigm to infer causal structure:
 
 Figure 10: Comparison between two proposed levels of investigation in science one by George Ellis (Ellis, 2008) and the other by Oppenheim and Putnam (Oppenheimer & Putnam, 1958). In this figure, I also integrated “Levels of structure within nervous system” proposed by Churchland and Sejnowski (P. Churchland & Sejnowski, 1994; Sejnowski, Churchland, & Movshon, 2014). On the right side, there is the scope of causal investigation in neuroscience. It is important to note that, all of these techniques are capable of either activating, which can leads to satisfying sufficiency, or deactivating for searching in domain of necessity. However, brain lesion is the exception that is unable to be used to search for sufficient neuronal substrate to produce the behaviour. In addition, CRISPR cannot be added in this scope since it has both different temporal and spatial resolution (described later). Abbreviations: tDCS: Transcranial Direct Current Stimulation ,TMS: Transcranial Magnetic Stimulation ,EBS: Electrical Brain Stimulation ,DBS: Deep Brain Stimulation ,DREADDs: Designer Receptors Exclusively Activated by Designer Drugs. Image on the right has modified from (Sejnowski et al., 2014) 
 
-## Points To Remember 
+
+
+## Points To Remember
 
 - First, a single intervention may not be sufficient to distinguish causal structures. 
 - Second, under certain assumptions no interventions are needed to distinguish causal structures.
 - Third, sometimes causal structures can be distinguished without interventions, but the use of interventions allows a weakening of other assumptions while maintaining the same level of identifiability. 
 - Fourth, there are cases for which interventions are the only known way to make progress.
+
+
 
 ## Future work
 
@@ -280,7 +284,11 @@ Figure 10: Comparison between two proposed levels of investigation in science on
 - Can we come up with methods that can sustain the effect of perturbed response like clamping?  
 - Using refractory period as instrumental variable to decipher causal connectivity [20]. 
 
-## Appendix:
+
+
+## Appendix (unfinished):
+
+
 
 ### History of Causal Discovery
 
@@ -328,13 +336,13 @@ Figure 10: Comparison between two proposed levels of investigation in science on
 - **Theorem 2 (Linear Non-Gaussian)** Under the assumption of causal Markov, acyclicity and a linear non-Gaussian
   parameterization (Eq. 2), the causal structure can be uniquely determined. 
 
- ![image-20190903000609547](/Users/akshay/Dropbox/Notes/Science/assets/image-20190903000609547.png)
+ ![image-20190903000609547](images/image-20190903000609547.png)
 
 - **Theorem 4 (non-linear additive noise):** Under the assumption of Markov, acyclicity and causal sufficiency
   and a non-linear additive noise parameterization (Eq. 6), Unless *the Hoyer condition is satisfied, the true causal
   structure can be uniquely identified.
 
-![image-20190903000626274](/Users/akshay/Dropbox/Notes/Science/assets/image-20190903000626274.png)
+![image-20190903000626274](images/image-20190903000626274.png)
 
 - The epistemological advantages of structural interventions on one variable are at least the following: 
   - No correlation between the manipulated variable and any other non-manipulated variable in the resulting distribution is due to an unmeasured common cause (confounder). 
